@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <style>
+
+
+.form-container {
+      margin:  auto;
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-container h2 {
+      margin-top: 0;
+    }
+    .form-container input[type="text"],
+    .form-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .form-container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: saddlebrown;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .toggle-form {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .toggle-form a {
+      color: rgb(255, 254, 253);
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    function showLoginForm() {
+      document.getElementById("login-form").style.display = "block";
+      document.getElementById("register-form").style.display = "none";
+    }
+
+    function showRegisterForm() {
+      document.getElementById("register-form").style.display = "block";
+      document.getElementById("login-form").style.display = "none";
+    }
+  </script>
+</head>
+<body style="background-image: url('https://img.freepik.com/premium-photo/restaurant_23-2148014999.jpg?w=740');background-repeat: no-repeat;background-size: cover;">
+
+
+  
+<h1 style="visibility: hidden;">..</h1>
+
+    <h2 style="visibility: hidden;" class="">Login</h2>
+    <div class="form-container">
+    <form id="login-form" action="{% url 'home' %}" >
+        <h2 class="text-white">Login</h2>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="submit" value="Login">
+    </form>
+
+    <h2 style="visibility: hidden;" class="">Register</h2>
+    <form id="register-form" action="register.php" method="post" style="display: none;">
+        <h2 class="text-white">Register</h2>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="text" name="email" placeholder="Email" required>
+      <input type="text" name="mobile" placeholder="mobile" required>
+      <input type="password" name="password" placeholder="Password" required>
+
+      <input type="password" name="password" placeholder="re Password" required>
+
+      <input type="submit" value="Register">
+    </form>
+
+    <div class="toggle-form">
+      <a href="#" onclick="showLoginForm()">Login</a> | 
+      <a href="#" onclick="showRegisterForm()">Register</a>
+    </div>
+  </div>
+{% endblock %}

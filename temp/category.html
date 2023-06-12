@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/cs/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>My Blog</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 0;
+scroll-behavior: smooth;
+scroll-padding-top: 2rem;
+box-sizing: border-box;
+
+}
+
+:root{
+    --container-color:#f5fbff;
+    --second-color:#d30a68;
+    --text-color:#fff;
+    --bg-color:black;
+}
+
+
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+
+img{
+    width: 100%;
+}
+
+section{
+    padding: 3rem 0 2rem;
+}
+.container{
+    max-width: 1068px;
+    margin: auto;
+    width: 100%;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    background: var(--bg-color);
+
+}
+
+
+header.shadow{
+    background: var(--container-color);
+    transition: 0.4s;
+}
+
+header.shadow .logo{
+    color: var(--bg-color);
+}
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+}
+
+.logo{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: black;
+}
+
+.logo span{
+color: var(--second-color);
+}
+
+
+
+
+.home-text{
+color: white;
+visibility: hidden;
+text-align: center;
+}
+.home-title{
+    font-size: 3.5rem;
+}
+.home-subtitle{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.post-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.5rem;
+    margin-top: 2rem !important;
+    
+    
+}
+.filter-item{
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #6F4E37;
+    
+    text-align: center;
+
+
+}
+
+.active-filter{
+    background:#6F4E37;
+    color: white;
+    
+    border-radius: 4px;
+}
+
+.post{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(280px,auto));
+        justify-content: center;
+        gap: 1.5rem;
+        ;
+        
+}
+
+.post-box{
+    background: var(--bg-color);
+    box-shadow: 0 4px 14px white;
+    width: 100%;
+    border-radius: 0.5rem;
+    color: var(--text-color);
+    padding: 10px;
+}
+
+.post-img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem;
+    
+}
+
+.category{
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--second-color);
+}
+.post-title{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.post-date{
+    display: flex;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+.post-description{
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    margin:  5px 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+.footer p{
+    font-size: 0.938rem;
+    color: var(--text-color);
+}
+
+.social{
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.social .bx{
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+.social .bx:hover{
+    color: var(--second-color);
+    transition: 0.3s all linear;
+}
+
+
+.post-header{
+    width: 100%;
+    height: 500px;
+    background: var(--container-color);
+}
+
+.post-container{
+    max-width: 800px;
+    margin: auto;
+    width: 100%;
+}
+.header-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem !important;
+    
+}
+
+.back-home{
+    color: var(--second-color);
+    font-size: 1.6rem;
+}
+
+.header-title{
+    width: 90%;
+    font-size: 2.6rem;
+    color: var(--bg-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    
+}
+
+.header-img{
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.post-content{
+    margin-top: 13rem !important;
+}
+
+.sub-heading{
+    font-size: 1.2rem;
+    color: var(--second-color);
+}
+
+.post-text{
+    font-size: 1rem;
+    line-height: 1.7rem;
+    margin: 1rem 0;
+    text-align: justify;
+    color: var(--text-color);
+
+}
+
+.share{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+
+}
+.share-title{
+    font-size: 1.1rem;
+}
+
+.share-title{
+    color: var(--text-color);
+}
+
+@media(max-width:1060px){
+    .container{
+        margin: 0 auto;
+        width: 95%;
+    }
+    .home-text{
+        width: 100%;
+
+    }
+    .header-img{
+        height: 670px;
+}
+@media(max-width:800px){
+    .nav{
+        padding: 14px 0;
+
+    }
+    .post-container{
+        margin: 0 auto;
+        width: 95%;
+    }
+    .header-img{
+        height: 570px;
+}
+
+@media(max-width:768px){
+    .nav{
+        padding: 10px 0;
+    }
+    section{
+        padding: 2rem 0;
+    }
+    .header-content{
+        margin-top: 3rem !important;
+    }
+    .home{
+        min-height: 380px;
+    }
+    .header-title{
+        font-size: 2rem;
+    }
+    .header-img{
+        height: 370px;
+    }
+    .post-header{
+        height: 435px;
+    }
+    .post-content{
+        margin-top: 9rem !important;
+    }
+
+}
+
+@media(max-width:570px){
+    .post-header{
+        height: 390px;
+    }
+    .header-title{
+        width: 100%;
+    }
+    .header-img{
+        height: 340px;
+
+    }
+    .footer{
+        flex-direction: column;
+        row-gap: 1rem;
+        padding: 20px 0;
+        text-align: center;
+    }
+}
+
+@media(max-width:396px){
+    .home-title{
+        font-size: 2rem;
+    }
+    .home-subtitle{
+        font-size: 0.9rem;
+    }
+    .home{
+        min-height: 300px;
+    }
+    .post-box{
+        padding: 10px;
+    }
+    .header-title{
+        font-size: 1.4rem;
+    }
+    .header-img{
+        height: 240px;
+        
+    }
+    .post-header{
+        height: 335px;
+    }
+    .post-content{
+        margin-top: 5rem !important;
+    }
+    .post-text{
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        margin: 10px 0;
+    }
+}}}
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.html{
+    font-size: 62.5%;
+}
+
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines{
+    display: none;
+}
+
+.container{
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
+.navbar{
+    box-shadow: 0px 5px 10px 0px #aaa;
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    opacity: 0.85;
+    z-index: 100;
+    top: 0;
+    padding: 10px;
+}
+
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+    
+}
+
+.menu-items{
+    order: 2;
+    display: flex;
+}
+.logo{
+    order: 1;
+    font-size: 2.3rem;
+}
+
+.menu-items li{
+    list-style: none;
+    margin-left: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.navbar a{
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover{
+    color:#6F4E37;
+}
+
+@media (max-width: 768px){
+    .navbar{
+        opacity: 0.95;
+    }
+
+    .navbar-container input[type="checkbox"],
+    .navbar-container .hamburger-lines{
+        display: block;
+    }
+
+    .navbar-container{
+        display: block;
+        position: relative;
+        height: 64px;
+    }
+
+    .navbar-container input[type="checkbox"]{
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 30px;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .navbar-container .hamburger-lines{
+        display: block;
+        height: 28px;
+        width: 35px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .navbar-container .hamburger-lines .line{
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 10px;
+        background: #333;
+    }
+    
+    .navbar-container .hamburger-lines .line1{
+        transform-origin: 0% 0%;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar-container .hamburger-lines .line2{
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .navbar-container .hamburger-lines .line3{
+        transform-origin: 0% 100%;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar .menu-items{
+        padding-top: 100px;
+        background: #fff;
+        height: 100vh;
+        max-width: 300px;
+        transform: translate(-150%);
+        display: flex;
+        flex-direction: column;
+        margin-left: -40px;
+        padding-left: 40px;
+        transition: transform 0.5s ease-in-out;
+        box-shadow:  5px 0px 10px 0px #aaa;
+        overflow: scroll;
+    }
+
+    .navbar .menu-items li{
+        margin-bottom: 1.8rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .logo{
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 2.5rem;
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .menu-items{
+        transform: translateX(0);
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line1{
+        transform: rotate(45deg);
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line2{
+        transform: scaleY(0);
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line3{
+        transform: rotate(-45deg);
+    }
+
+}
+
+@media (max-width: 500px){
+    .navbar-container input[type="checkbox"]:checked ~ .logo{
+        display: none;
+    }
+}
+
+
+
+    </style>
+</head>
+<body  >
+    <section class="container-fluid">
+        <nav class="navbar ">
+            <div class="navbar-container container ">
+                <input type="checkbox" name="" id="">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <ul class="menu-items">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'cat' %}">Category</a></li>
+                    
+                    <li><a href="{% url 'cart' %}">Cart</a></li>
+                    <li><a href="lg">Login</a></li>
+                </ul>
+                <h1 class="logo">RestoCafe</h1>
+            </div>
+        </nav>
+   
+    </section>
+
+        
+   
+
+        <div class="post-filter container">
+            <span class="filter-item active-filter " data-filter="all"> All Items </span>
+            <span class="filter-item " data-filter="veg">VEGITERIAN</span>
+            <span class="filter-item " data-filter="non">NON-VEG</span>
+            <span class="filter-item " data-filter="con">CONTINENTAL</span>
+        </div>
+
+        <section class="post container" >
+            <div class="post-box non">
+                <img src="https://img.freepik.com/premium-photo/chicken-dhum-biriyani-using-jeera-rice-spices-arranged-earthen-ware_527904-513.jpg?w=740" alt="" class="post-img">
+                <h2 class="category">Mobile</h2>
+                <a href="" class="post-title">
+                    CHICKEN BIRIYANI
+                </a>
+                <span class="post-date"><h1>$180</h1></span>
+                <p class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                
+            
+
+                <div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+                    <button style="width: 50%; height: 30%;"><a style="color: #000;" href="{% url 'cart' %}"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></a></button>
+                    <button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+                </div>
+                
+                
+                
+                
+        </div>
+
+
+        <div class="post-box non">
+            <img src="https://img.freepik.com/free-photo/side-view-baked-chicken-with-cucumber-lemon-seasoning-bread-table_141793-4757.jpg?w=740&t=st=1686562312~exp=1686562912~hmac=3c2203660b13d729da9b8d4ce093d13aa5240f08e9045d92430c1f0a8828ff60" alt="" class="post-img">
+            <h2 class="category">NON-VEG</h2>
+            <a href="" class="post-title">
+                 CHICKEN TANDHOORI
+            </a>
+            <span class="post-date"><h1>$380</h1></span>
+            <p class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            
+        
+
+            <div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+                <button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+                <button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+            </div>
+            
+            
+            
+            
+    </div>
+
+    <div class="post-box veg">
+        <img src="https://img.freepik.com/free-photo/dish-with-rice_144627-18096.jpg?w=740&t=st=1686562623~exp=1686563223~hmac=53e9694c5d99cfa3eb6d1bbf72fb7427fb35194174242a362e213226347eeeaa" alt="" class="post-img">
+        <h2 class="category">VEG</h2>
+        <a href="" class="post-title">
+            VEG BIRIYANI
+        </a>
+        <span class="post-date"><h1>$180</h1></span>
+        <p class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        
+    
+
+        <div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+            <button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+            <button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+        </div>
+        
+        
+        
+        
+</div>
+<div class="post-box con">
+    <img src="https://img.freepik.com/free-photo/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19744.jpg?size=626&ext=jpg&ga=GA1.1.1687316070.1684644571&semt=ais" alt="" class="post-img">
+    <h2 class="category">CONTINENTAL</h2>
+    <a href="" class="post-title">
+        PASTA
+    </a>
+    <span class="post-date"><h1>$180</h1></span>
+    <p class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    
+
+
+    <div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+        <button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+        <button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+    </div>
+    
+    
+    
+    
+</div>
+
+    <div class="post-box veg">
+        <img src="https://img.freepik.com/free-photo/high-angle-chicken-meal_23-2148825122.jpg?w=740&t=st=1686562755~exp=1686563355~hmac=f42df728e487a49fab7ab43ca56b09e4edf9d52752bef960dc16045eb58169c4" alt="" class="post-img">
+        <h2 class="category">VEG</h2>
+        <a href="" class="post-title">
+           DEMO_VEG
+        </a>
+        <span class="post-date"><h1>$180</h1></span>
+        <p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        
+    
+
+   
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+    <button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+    <button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+
+
+<div class="post-box non">
+    <img src="https://img.freepik.com/free-photo/top-view-delicious-fish-meal-tray_23-2148734692.jpg?w=740&t=st=1686563512~exp=1686564112~hmac=dd80896d4777780079dddc52b1ae928f76c41195e1aae883abc50714922e4423" alt="" class="post-img">
+    <h2 class="category">NON</h2>
+    <a href="" class="post-title">
+        demo non
+    </a>
+    <span class="post-date"><h1>$180</h1></span>
+    <p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    
+
+
+
+    <div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+        <button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+        <button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+    </div>
+    
+</div>
+
+
+
+<div class="post-box non">
+<img src="https://img.freepik.com/free-photo/side-view-chicken-meatballs-with-greens-ketchup-plate_141793-4839.jpg?w=740&t=st=1686563482~exp=1686564082~hmac=c2a2a9e574d105dc51bc913968f914cba5a9fd59ea68f63fbdc6d80ef48f4879" alt="" class="post-img">
+<h2 class="category">NON</h2>
+<a href="" class="post-title">
+    non-demo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+<div class="post-box veg">
+<img src="https://img.freepik.com/premium-photo/aloo-mutter-is-punjabi-dish-from-indian-subcontinent-which-is-made-from-potatoes-peas-spiced-creamy-tomato-based-sauce_466689-77434.jpg?w=740" alt="" class="post-img">
+<h2 class="category">VEG</h2>
+<a href="" class="post-title">
+   veg-demo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+<div class="post-box veg">
+<img src="https://img.freepik.com/free-photo/half-shot-healthy-meal-with-brocoli-carrots-black-plate-gray-table_140725-86728.jpg?w=740&t=st=1686563368~exp=1686563968~hmac=f66226836eeb4c495ecfccc5b51fff27bc4021c51070c4e9eabf988204508021" alt="" class="post-img">
+<h2 class="category">VEG</h2>
+<a href="" class="post-title">
+    veg-demo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+<div class="post-box non">
+<img src="https://img.freepik.com/free-photo/top-view-vegetable-soup-with-meat-inside-plate-grey_140725-36040.jpg?w=740&t=st=1686563307~exp=1686563907~hmac=f2676ead5ad58d324d1ad497495ce372b95a704006531d06048bcaa79b14a168" alt="" class="post-img">
+<h2 class="category">NON</h2>
+<a href="#" class="post-title">
+   non-demo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+    <button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+    <button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+<div class="post-box con">
+<img src="https://img.freepik.com/free-photo/spaghetti-seafood-with-tomato-sauce-decorated-with-beautiful-ingredients_1150-26414.jpg?w=740&t=st=1686563215~exp=1686563815~hmac=00ac1a595dd099e25962645d7319cf7a831912ec51b8051ff50774cdfae58745" alt="" class="post-img">
+<h2 class="category">CONTINENTAL</h2>
+<a href="" class="post-title">
+   con-demo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+
+
+
+<div class="post-box con">
+<img src="https://img.freepik.com/free-photo/fried-egg-with-vegetables-plate_1220-5285.jpg?w=740&t=st=1686563165~exp=1686563765~hmac=3f3723352add81e3d035ea923759f59fe2483dc64a8a3349c79ad878a5e252f0" alt="" class="post-img">
+<h2 class="category">CONTINENTAL</h2>
+<a href="" class="post-title">
+   CON-demo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+<div class="post-box veg">
+<img src="https://img.freepik.com/free-photo/appetizing-healthy-rice-with-vegetables-white-plate-wooden-table_2829-19773.jpg?w=740&t=st=1686563098~exp=1686563698~hmac=35bf9c18ec2bbcb420454752b69ca2a4f9fcb8db25c51d687b27028d657b20d1" alt="" class="post-img">
+<h2 class="category">VEG</h2>
+<a href="" class="post-title">
+veg-demo  
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+
+<div class="post-box non">
+<img src="https://img.freepik.com/free-photo/chicken-skewers-with-slices-apples-chili-top-view_2829-19996.jpg?w=740&t=st=1686563035~exp=1686563635~hmac=197196f2f780ae8bb860d0e94c3baa42b9189c1008ea9d2f96abe90095a36f20" alt="" class="post-img">
+<h2 class="category">NON-VEG</h2>
+<a href="" class="post-title">
+   non demo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+
+<div class="post-box veg">
+<img src="https://img.freepik.com/free-photo/local-food-meal-assortment_23-2148833773.jpg?w=740&t=st=1686562983~exp=1686563583~hmac=277b488a1b743d0a1f8ec73f67c267c9b609779bd62d629a57e6004e39821f09" alt="" class="post-img">
+<h2 class="category">VEG</h2>
+<a href="" class="post-title">
+    DEMO_VEG
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+
+<div class="post-box con">
+<img src="https://img.freepik.com/free-photo/dinner-set-with-dolma-soups-salads-chicken-with-rice-french-fries_140725-7827.jpg?w=740&t=st=1686562938~exp=1686563538~hmac=3a689a5918e020c3fa714887276e36726bc6e4ab3d9c205dd261f00aa9ab33c1" alt="" class="post-img">
+<h2 class="category">CONTINENTAL</h2>
+<a href="" class="post-title">
+   deomo
+</a>
+<span class="post-date"><h1>$180</h1></span>
+<p  class="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+
+
+<div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
+<button style="width: 50%; height: 30%;"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></button>
+<button style="width: 50%; height: 30%;"><i style="background-color: rgb(255, 251, 251); font-size: 2rem; color: #ee0606;" class="fas fa-heart"></i></button>
+</div>
+
+</div>
+
+
+
+    </section>
+
+  
+   
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+$('.filter-item').click(function(){
+    const value = $(this).attr('data-filter');
+    if (value == 'all'){
+        $('.post-box').show('1000');
+    }
+    else{
+        $('.post-box')
+        .not('.'+value)
+        .hide('1000');
+        $('.post-box')
+        .filter('.'+ value)
+        .show('1000');
+    }
+});
+
+$('.filter-item').click(function(){
+        $(this).addClass("active-filter").siblings().removeClass("active-filter");
+});
+});
+
+
+</script>
+<footer>
+<div class="footer-bottom">
+  <p class="text-center">&copy; 2023 RestoCafe. All rights reserved.</p>
+</div>
+</footer>
+
+</body>
+</html>

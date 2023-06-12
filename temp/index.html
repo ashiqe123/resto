@@ -1,32 +1,941 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+  .box {
+  /* Other styles */
+  transition: transform 0.5s ease;
+}
+
+.box:hover {
+  transform: rotate(90deg);
+}
+.image-fold {
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.image-fold img {
+  transition: transform 0.5s;
+  transform-origin: bottom;
+}
+
+.carousel-item.active .image-fold img {
+  transform: rotateX(0deg);
+}
+
+.carousel-item .image-fold img {
+  transform: rotateX(90deg);
+}
+
+.menu-card {
+  width: 100%;
+  height: 16rem;
+  perspective: 100%;
+}
+
+.menu-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.menu-card:hover .menu-card-inner {
+  transform: rotateY(180deg);
+}
+
+.menu-card-front,
+.menu-card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.menu-card-front {
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-card-back {
+  background-color: #6F4E37;
+  color: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-image: url('https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?w=900&t=st=1686465363~exp=1686465963~hmac=81fc8cbfbf44231a65d1e6d00d9c133456ee65e30d25653e55f34ce2885d2809');
+}
+
+.menu-item-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.menu-item-price {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.menu-item-description {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.wishlist-button,
+.add-to-cart-button {
+  padding: 10px 20px;
+  background-color: #fffdfd;
+  border: 2px solid #6F4E37;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #6F4E37;
+  border-radius: .6rem;
+}
+
+.wishlist-button:hover,
+.add-to-cart-button:hover {
+  background-color: #6F4E37;
+  color: white;
+  border: 2px solid #fff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+
+.slide-container{
+  max-width: 100%;
+  width: 100%;
+}
+.slide-content{
+  overflow: hidden;
+  border-radius: 25px;
+}
+.card{
+  border-radius: 25px;
+  background-color: #FFF;
+  height: 30rem;
+  
+}
+.image-content,
+.card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+}
+.image-content{
+  position: relative;
+  row-gap: 5px;
+  padding: 25px 0;
+}
+.overlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #6F4E37;
+  border-radius: 25px 25px 0 25px;
+}
+.overlay::before,
+.overlay::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 40px;
+  width: 40px;
+  background-color: #6F4E37;
+}
+.overlay::after{
+  border-radius: 0 25px 0 0;
+  background-color: #FFF;
+}
+.card-image{
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: #FFF;
+  padding: 3px;
+}
+.card-image .card-img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #6F4E37;
+}
+.name{
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+.description{
+  font-size: 14px;
+  color: #707070;
+  text-align: center;
+}
+.button{
+  border: none;
+  font-size: 16px;
+  color: #FFF;
+  padding: 8px 16px;
+  background-color: #6F4E37;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button:hover{
+  background: #5c351a;
+}
+.ad{
+  border: none;
+  font-size: 16px;
+  color: #6F4E37;
+  padding: 8px 16px;
+  background-color:#fff;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.ad:hover{
+  background: #5c351a;
+  color: #fff;
+}
+.swiper-navBtn{
+  color: #5c351a;
+  transition: color 0.3s ease;
+}
+.swiper-navBtn:hover{
+  color:#6F4E37;
+}
+.swiper-navBtn::before,
+.swiper-navBtn::after{
+  font-size: 35px;
+}
+.swiper-button-next{
+  right: 0;
+}
+.swiper-button-prev{
+  left: 0;
+}
+.swiper-pagination-bullet{
+  background-color: #6F4E37;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active{
+  background-color: #6F4E37;
+}
+@media screen and (max-width: 768px) {
+  .slide-content{
+    margin: 0 10px;
+  }
+  .swiper-navBtn{
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 10px;
+}
+
+.gallery-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.feedback-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.feedback-form h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+@media (max-width: 600px) {
+  .feedback-form {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+
+</style>
 <section class="container-fluid">
-    <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" >
+        <div class="image-fold">
+          <img src="https://img.freepik.com/free-photo/side-view-chef-flambeing-dish-kitchen_23-2148763118.jpg?w=740&t=st=1686461750~exp=1686462350~hmac=1c84546f196cfaccb31961bd5cf8151bd4c7fbefbee2bae668072b6c29122ace" class="d-block w-100" alt="...">
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://img.freepik.com/premium-photo/set-spices-herbs-indian-cuisine-world-map-pepper-salt-paprika-basil-turmeric-black-wooden-board-top-view-free-space-copying_187166-20314.jpg?w=900" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
+      <div class="carousel-item" >
+        <div class="image-fold">
+          <img src="https://img.freepik.com/free-photo/top-view-indian-food-assortment_23-2148747714.jpg?w=740&t=st=1686462003~exp=1686462603~hmac=f7e423cc4e2a697a2a48c464ae4d7cce506327e97c07b3135191c86ba4805d71" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <div class="carousel-item" >
+        <div class="image-fold">
+          <img src="https://img.freepik.com/free-photo/chicken-skewers-with-slices-sweet-peppers-dill_2829-18807.jpg?w=740&t=st=1686462025~exp=1686462625~hmac=c7ac81e36f64610355d2a6ad4db594113294f7023087636ddc2ea3b97be14c42" class="d-block w-100" alt="...">
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span style="background-color: rgb(209, 118, 6);" class="carousel-control-prev-icon box" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span style="background-color: rgb(209, 118, 6);" class="carousel-control-next-icon box" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </section>
+
+<section class="container-fluid mt-5">
+  
+  <div class="row">
+  
+
+    <div class="col-sm-6 mt-5">
+      <h1 class="text-center">Get Fresh  <span style="color:  #6F4E37;"> Food</span></h1>
+      <h1 class="text-center ">In a Easy Way</h1>
+      <p class="mt-3 text-align-justify"><b>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+      </b></p>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="col">
+        <img class="img-fluid" src="https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=" alt="">
+      </div>
+  </div>
+  </div>
+</section>
+
+<section class="container-fluid mt-5">
+  <div>
+    <h1 class="text-center"><span style="color: #6F4E37;">ABOUT</span> US</h1>
+  </div>
+  <div class="row mt-3">
+    <div class="col-sm-6">
+        <div class="col">
+          <img class="img-fluid" src="https://img.freepik.com/free-photo/chicken-salad-with-vegetables-olives_1220-4069.jpg?w=740&t=st=1686463824~exp=1686464424~hmac=88c752c15cc7528efcd5b2a7fd3c34080000dfef78b529dcfae95c76632f14c4" alt="">
+        </div>
+    </div>
+
+    <div class="col-sm-6 mt-5">
+      <h1 class="text-center">Why Choose <span style="color:  #6F4E37;"> us</span>?</h1>
+      <h2 class="text-center mt-5">Good Food , Better Health</h2>
+      <p class="mt-3 text-align-justify"><b>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+      </b></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h1 class="text-center m-5">OUR<span style="color: #6F4E37;"> MENU</span> </h1>
+  </div>
+</section>
+
+<section class="container-fluid mt-5 mb-5">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?w=900&t=st=1686465363~exp=1686465963~hmac=81fc8cbfbf44231a65d1e6d00d9c133456ee65e30d25653e55f34ce2885d2809" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">NON-VEG</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>        </div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg?w=900&t=st=1686466494~exp=1686467094~hmac=a0eaab5c49286a588a6dbba619608dc3df9a31c6c8998db6bbf11fe41024a21f" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">CONTINENTAL</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/boiling-cauldron-simmers-hearty-vegetable-soup-recipe-generated-by-ai_188544-10271.jpg?w=900&t=st=1686466004~exp=1686466604~hmac=00cfcc066cc220d3c193a56bf9ddabe4017c68307030e771f0baa0c40d1f4a31" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">SOUP</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" class="img-fluid" src="https://img.freepik.com/free-photo/indian-butter-chicken-black-bowl-black-background_123827-20757.jpg?w=740&t=st=1686466155~exp=1686466755~hmac=e8056fa4775a5260df1ef9a24e565e6bc46f9b9005765df1e8b4794e2757eaa3" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">SEMI CONTINENTAL</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/premium-photo/fried-rice-with-pork-vegetable_1339-131922.jpg?w=740" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">VEGITARIAN</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19739.jpg?w=740&t=st=1686466294~exp=1686466894~hmac=3ed490129bd817d9616a1f41d96c786aeda48d38ac36dd0bc1f9700c1279617b" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/premium-photo/assorted-indian-non-vegetarian-food-recipe-served-group-includes-chicken-curry-mutton-masala-anda-egg-curry-butter-chicken-biryani-tandoori-murg-chicken-tikka-naa-roti-ramadan_466689-40865.jpg?w=740" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/premium-photo/roasted-chicken-legs-with-south-indian-long-grain-tomato-rice-cooked-with-sauteed-tomatoes-onion-red-chili-powder-cinnamon-turmeric-black-plate-rustic-wooden-table-copy-space_268847-995.jpg?w=740" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/curry-with-chicken-onions-indian-food-asian-cuisine_2829-6270.jpg?w=740&t=st=1686466771~exp=1686467371~hmac=977bc229627b8e54efb0654117e0725a578336a4d0c86794aba6a6ddd1effaa0" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/top-view-vegetable-soup-with-meat-inside-plate-grey_140725-36040.jpg?w=740&t=st=1686466809~exp=1686467409~hmac=147eb465e55f9a5b36d363d8416618215d1527560e0af175d78d159f8e2f3148" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/high-angle-indian-bowl-with-pita_23-2148734669.jpg?w=740&t=st=1686466823~exp=1686467423~hmac=a3ce59cca9f07309304a41ee27668706d0d36e6e21adec25ccf486688798c8e5" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/side-close-up-view-pilaf-appetizing-pilaf-with-rice-meat-dried-fruits_140725-74038.jpg?w=740&t=st=1686466848~exp=1686467448~hmac=4f7c6dcb3c2c893fef3cf2f74c04319c22f9e8c3e8c023bd4b1bb48c59f09255" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/italian-spaghetti-with-tomato-sauce-pan_1220-4240.jpg?w=740&t=st=1686466913~exp=1686467513~hmac=70e758ec86b4fca27ef3f47d1c1bd392e0d3a6cad5905872d733392d17d12084" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/front-close-view-fried-fishes-lemon-slices-brown-plate-spices-tomatoes-oil-bottle-mix-colors-table-with-free-space_179666-18174.jpg?w=740&t=st=1686466930~exp=1686467530~hmac=c18d52a0c0966ecff9aaa541d1d6676972b2440416ebd6296258e11c31532389" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-4">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img class="img-fluid" src="https://img.freepik.com/free-photo/sour-curry-with-snakehead-fish-spicy-garden-hot-pot-thai-food_1150-26404.jpg?w=740&t=st=1686466947~exp=1686467547~hmac=c37490cc801048b01307891e0903192584e72fcbad1efc95ed699673f1387d95" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="wishlist-button">Add to Wishlist</button>
+            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</section>
+
+
+<section class="container-fluid mb-5 mt-5">
+<div class="row">
+  <h1 class="text-center"><span style="color: #6F4E37;">OUR</span> CHEF</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <img class="img-fluid rounded-circle"  src="https://img.freepik.com/free-photo/image-cheerful-young-cook-uniform-standing-isolated-grey-wall_171337-5340.jpg?w=740&t=st=1686467574~exp=1686468174~hmac=fea0ecd29d2259a7f5544b6436109e7ebe8e613440c8e91dfb8265d1b42be43b" alt="">
+    <center>
+      <h3>Ashiq</h3>
+      <p><b>Senior Chef</b></p>
+    </center>
+  </div>
+
+  <div class="col-sm-3">
+    <img  class="img-fluid rounded-circle"  src="https://img.freepik.com/free-photo/happy-male-chef-cook-restaurant-kitchen_496169-81.jpg?w=740&t=st=1686467986~exp=1686468586~hmac=8016cd19fe888a6dc9b19ae6b22c6c059bfdad545651d4ec8abbfce5544f0ff4" alt="">
+    <center>
+      <h3>abi</h3>
+      <p><b>Senior Chef</b></p>
+    </center>
+  </div>
+
+  <div class="col-sm-3">
+    <img  class="img-fluid rounded-circle"  src="https://img.freepik.com/premium-photo/happy-male-chef-dressed-uniform-holding-wooden-spoon_156779-545.jpg?w=740" alt="">
+    <center>
+      <h3>jasel</h3>
+      <p><b>Asst Chef</b></p>
+    </center>
+  </div>
+
+  <div class="col-sm-3">
+    <img  class="img-fluid rounded-circle"  src="https://img.freepik.com/premium-photo/cropped-shot-young-male-chef-preparing-meal-professional-kitchen_579247-36.jpg?w=740" alt="">
+    <center>
+      <h3>milu</h3>
+      <p><b>Junior Chef</b></p>
+    </center>
+  </div>
+</div>
+
+</section>
+
+
+<section class="container-fluid mb-5 mt-5 ">
+  <div class="row">
+    <h1 class="text-center">OUR CLIENTS<span style="color: #6F4E37;"> REVIEW</span> </h1>
+  </div>
+
+  <div class="slide-container swiper">
+    <div class="slide-content">
+        <div class="card-wrapper swiper-wrapper">
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/free-photo/beautiful-woman-dreaming-cyber-monday-sales_23-2148313194.jpg?w=740&t=st=1686552543~exp=1686553143~hmac=622ff83c3e44442a80179625cdf124060f43120ec184fb83812f95a4b4a0aa08" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elitThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">
+                      <i class="fas fa-star"></i>
+                      4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/free-photo/portrait-teenage-boy_23-2148105583.jpg?w=740&t=st=1686553416~exp=1686554016~hmac=ce1c44b1dc048c496ff4bf8ea1c642e889bcfd9e623f9cfeb64a9b6a57595172" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elitThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/free-photo/portrait-smiling-blonde-woman_23-2148316635.jpg?w=740&t=st=1686553460~exp=1686554060~hmac=8524639ffa2f3e125f3bdfd04a05ceed93e70d9add5b4f1e5bd1596dfb9b1970" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing eliThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/free-photo/young-man-wearing-blue-outfit-looking-confident_1298-291.jpg?w=740&t=st=1686553476~exp=1686554076~hmac=29d27968536b9bb075274733231a971ecb98c3e3ca475738466e00bf26319a2c" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing eliThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/premium-photo/portrait-smiling-young-female-standing-near-sea-happiness-concept_181624-55634.jpg?w=740" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing eliThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/premium-photo/close-up-smiling-businessman-standing-front-modern-office-buildings_51195-4689.jpg?w=740" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing eliThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/free-photo/portrait-serious-young-businessman-glasses_1262-3810.jpg?w=740&t=st=1686553543~exp=1686554143~hmac=6c98eef7f14c24bd52913138bd91ea6ef204e0d50c3ac3414ba826ad3de8fb8e" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing eliThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/premium-photo/young-handsome-businessman-suit-against-colored-wall_251136-74984.jpg?w=740" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing eliThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="https://img.freepik.com/premium-photo/young-handsome-businessman-suit-against-colored-wall_251136-74984.jpg?w=740" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">David Dell</h2>
+                    <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing eliThe lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                    <button class="button">4.6/5</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next swiper-navBtn"></div>
+    <div class="swiper-button-prev swiper-navBtn"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+</section>  
+
+<script>
+  var swiper = new Swiper(".slide-content", {
+    slidesPerView: 3,
+    spaceBetween: 25,
+    loop: true,
+    centerSlide: 'true',
+    fade: 'true',
+    grabCursor: 'true',
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints:{
+        0: {
+            slidesPerView: 1,
+        },
+        520: {
+            slidesPerView: 2,
+        },
+        950: {
+            slidesPerView: 3,
+        },
+    },
+  });
+</script>
+
+<section class="container-fluid mb-5">
+  <div class="row">
+    <h1 class="text-center"><span style="color: #6F4E37;"> GALLERY</span> </h1>
+  </div>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/delicious-fried-chicken-plate_144627-27383.jpg?w=740&t=st=1686554035~exp=1686554635~hmac=752001b26010885c9efd65b4cf5ca6836b6ddbad4280d786122cb6a9230a23a3" alt="Image 1">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/premium-photo/traditional-spanish-seafood-paella-fry-pan-white-background_222237-372.jpg?w=740" alt="Image 2">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/premium-photo/indian-vegetable-pulav-biryani-made-using-basmati-rice-served-terracotta-bowl-selective-focus_466689-55615.jpg?w=740" alt="Image 2">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/side-view-pilaf-with-stewed-beef-meat-plate_141793-5057.jpg?w=740&t=st=1686554084~exp=1686554684~hmac=d8bc77f6406d2551a9ded2a6c3ec6c4bde7d3eda6e3859c479de93d79a79265a" alt="Image 2">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=740&t=st=1686554100~exp=1686554700~hmac=135cd706c176dec75873e6314f1d286732019a63eb84e661b0edb83874382444" alt="Image 2">
+    </div>
+    
+
+    <!-- Add more gallery items as needed -->
+
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/stir-fry-chicken-sweet-peppers-green-beans_2829-20110.jpg?w=740&t=st=1686554248~exp=1686554848~hmac=8a375557d933806eabf932a7f5b8561fd525ee29540e870c3f0fec11698f8721" alt="Image 1">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/premium-photo/indian-hindu-veg-thali-also-known-as-food-platter-is-complete-lunch-dinner-meal-closeup-selective-focus_466689-9082.jpg?w=740" alt="Image 2">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/whole-chicken-grill-served-with-rice-garnish-white-plate_114579-873.jpg?w=740&t=st=1686554274~exp=1686554874~hmac=83e681d7b7e12254ac98134b616adaa8b197d0bb7e9998cc611ecb71f8ff1ae4" alt="Image 2">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/premium-photo/chicken-dhum-biriyani-using-jeera-rice-spices-arranged-earthen-ware_527904-513.jpg?w=740" alt="Image 2">
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/fried-vegetables-with-sauce-pan_1220-5255.jpg?w=740&t=st=1686554305~exp=1686554905~hmac=d35d91d6d9f1d3cc4202295aa5acacf49bac45a97fc18b843a1ef523f81b890e" alt="Image 2">
+    </div>
+  </div>
+  
+
+</section>
+
+<section class="container-fluid mt-5 mb-5">
+  <div class="feedback-form">
+    <h2>Tell us <span style="color: #5c351a;">something</span> </h2>
+    <form action="{% url 'lg' %}">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button style="cursor: pointer;border-radius: 4px;background-color: #5c351a;color: #f1f1f1;display: block;width: 100%;padding: 10px;border: none;;" type="submit">Submit</button>
+    </form>
+  </div>
+  
+  
+</section>
+
+
+
 {% endblock %}
