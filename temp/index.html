@@ -52,6 +52,7 @@
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
+  border-radius: .5rem;
 }
 
 .menu-card-front {
@@ -59,6 +60,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 1rem;
 }
 
 .menu-card-back {
@@ -69,14 +71,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   background-image: url('https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?w=900&t=st=1686465363~exp=1686465963~hmac=81fc8cbfbf44231a65d1e6d00d9c133456ee65e30d25653e55f34ce2885d2809');
 }
 
 .menu-item-name {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .menu-item-price {
@@ -89,16 +91,7 @@
   margin-bottom: 10px;
 }
 
-.wishlist-button,
-.add-to-cart-button {
-  padding: 10px 20px;
-  background-color: #fffdfd;
-  border: 2px solid #6F4E37;
-  margin-bottom: 10px;
-  cursor: pointer;
-  color: #6F4E37;
-  border-radius: .6rem;
-}
+
 
 .wishlist-button:hover,
 .add-to-cart-button:hover {
@@ -106,6 +99,14 @@
   color: white;
   border: 2px solid #fff;
 }
+
+.menu-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: .5rem;
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -122,6 +123,7 @@
   border-radius: 25px;
   background-color: #FFF;
   height: 30rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   
 }
 .image-content,
@@ -199,19 +201,18 @@
   background: #5c351a;
 }
 .ad{
-  border: none;
-  font-size: 16px;
-  color: #6F4E37;
-  padding: 8px 16px;
-  background-color:#fff;
-  border-radius: 6px;
-  margin: 14px;
+  padding: 1px 10px;
+  background-color: #fffdfd;
+  border: 2px solid #6F4E37;
+  margin-bottom: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  color: #6F4E37;
+  border-radius: .6rem;
 }
 .ad:hover{
-  background: #5c351a;
-  color: #fff;
+  background-color: #6F4E37;
+  color: white;
+  border: 2px solid #fff;
 }
 .swiper-navBtn{
   color: #5c351a;
@@ -257,16 +258,47 @@
   grid-gap: 10px;
 }
 
+
 .gallery-item {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .gallery-item img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  border-radius: .3rem;
 }
+
+/* Add this CSS at the end of your existing CSS */
+
+
+.item-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+
+.gallery-item:hover .item-name {
+  opacity: 1;
+  border-radius: .5rem;
+}
+
+
 
 .feedback-form {
   max-width: 500px;
@@ -302,6 +334,42 @@ input, textarea {
     padding: 10px;
   }
 }
+
+/* Add this CSS to your existing styles */
+
+.chef-card {
+  background-color: #f7f7f7;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.chef-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.chef-details {
+  margin-top: 20px;
+}
+
+.chef-details h3 {
+  color: #6F4E37;
+  font-size: 22px;
+}
+
+.chef-details p {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .chef-card {
+    margin-bottom: 30px;
+  }
+}
+
+
+
 
 </style>
 <section class="container-fluid">
@@ -339,7 +407,7 @@ input, textarea {
   </div>
 </section>
 
-<section class="container-fluid mt-5">
+<section class="container-fluid">
   
   <div class="row">
   
@@ -347,7 +415,7 @@ input, textarea {
     <div class="col-sm-6 mt-5">
       <h1 class="text-center">Get Fresh  <span style="color:  #6F4E37;"> Food</span></h1>
       <h1 class="text-center ">In a Easy Way</h1>
-      <p class="mt-3 text-align-justify"><b>
+      <p class="mt-3 " style="text-align: justify;"><b>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 
@@ -356,7 +424,7 @@ input, textarea {
 
     <div class="col-sm-6">
       <div class="col">
-        <img class="img-fluid" src="https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=" alt="">
+        <img class="img-fluid" style="border-radius: .5rem;" src="https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=" alt="">
       </div>
   </div>
   </div>
@@ -369,14 +437,14 @@ input, textarea {
   <div class="row mt-3">
     <div class="col-sm-6">
         <div class="col">
-          <img class="img-fluid" src="https://img.freepik.com/free-photo/chicken-salad-with-vegetables-olives_1220-4069.jpg?w=740&t=st=1686463824~exp=1686464424~hmac=88c752c15cc7528efcd5b2a7fd3c34080000dfef78b529dcfae95c76632f14c4" alt="">
+          <img style="border-radius: .5rem;" class="img-fluid" src="https://img.freepik.com/free-photo/chicken-salad-with-vegetables-olives_1220-4069.jpg?w=740&t=st=1686463824~exp=1686464424~hmac=88c752c15cc7528efcd5b2a7fd3c34080000dfef78b529dcfae95c76632f14c4" alt="">
         </div>
     </div>
 
     <div class="col-sm-6 mt-5">
       <h1 class="text-center">Why Choose <span style="color:  #6F4E37;"> us</span>?</h1>
       <h2 class="text-center mt-5">Good Food , Better Health</h2>
-      <p class="mt-3 text-align-justify"><b>
+      <p class="mt-3 " style="text-align: justify;"><b>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 
@@ -393,264 +461,289 @@ input, textarea {
 
 <section class="container-fluid mt-5 mb-5">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?w=900&t=st=1686465363~exp=1686465963~hmac=81fc8cbfbf44231a65d1e6d00d9c133456ee65e30d25653e55f34ce2885d2809" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?w=900&t=st=1686465363~exp=1686465963~hmac=81fc8cbfbf44231a65d1e6d00d9c133456ee65e30d25653e55f34ce2885d2809" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">NON-VEG</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>        </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>      </div>
         </div>
       </div>
       
     </div>
 
     
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg?w=900&t=st=1686466494~exp=1686467094~hmac=a0eaab5c49286a588a6dbba619608dc3df9a31c6c8998db6bbf11fe41024a21f" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg?w=900&t=st=1686466494~exp=1686467094~hmac=a0eaab5c49286a588a6dbba619608dc3df9a31c6c8998db6bbf11fe41024a21f" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">CONTINENTAL</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>         </div>
         </div>
       </div>
       
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/boiling-cauldron-simmers-hearty-vegetable-soup-recipe-generated-by-ai_188544-10271.jpg?w=900&t=st=1686466004~exp=1686466604~hmac=00cfcc066cc220d3c193a56bf9ddabe4017c68307030e771f0baa0c40d1f4a31" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/boiling-cauldron-simmers-hearty-vegetable-soup-recipe-generated-by-ai_188544-10271.jpg?w=900&t=st=1686466004~exp=1686466604~hmac=00cfcc066cc220d3c193a56bf9ddabe4017c68307030e771f0baa0c40d1f4a31" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">SOUP</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>      </div>
         </div>
       </div>
       
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="col-sm-4">
+  <div class="row ">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" class="img-fluid" src="https://img.freepik.com/free-photo/indian-butter-chicken-black-bowl-black-background_123827-20757.jpg?w=740&t=st=1686466155~exp=1686466755~hmac=e8056fa4775a5260df1ef9a24e565e6bc46f9b9005765df1e8b4794e2757eaa3" alt="Menu Item">
+            <img  class="img-fluid" src="https://img.freepik.com/free-photo/indian-butter-chicken-black-bowl-black-background_123827-20757.jpg?w=740&t=st=1686466155~exp=1686466755~hmac=e8056fa4775a5260df1ef9a24e565e6bc46f9b9005765df1e8b4794e2757eaa3" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">SEMI CONTINENTAL</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>       </div>
         </div>
       </div>
       
     </div>
 
     
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/premium-photo/fried-rice-with-pork-vegetable_1339-131922.jpg?w=740" alt="Menu Item">
+            <img  src="https://img.freepik.com/premium-photo/fried-rice-with-pork-vegetable_1339-131922.jpg?w=740" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">VEGITARIAN</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>      </div>
         </div>
       </div>
       
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19739.jpg?w=740&t=st=1686466294~exp=1686466894~hmac=3ed490129bd817d9616a1f41d96c786aeda48d38ac36dd0bc1f9700c1279617b" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19739.jpg?w=740&t=st=1686466294~exp=1686466894~hmac=3ed490129bd817d9616a1f41d96c786aeda48d38ac36dd0bc1f9700c1279617b" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">Price: $10.99</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
-  <div class="row mt-5">
-    <div class="col-sm-4">
-      <div class="menu-card">
-        <div class="menu-card-inner">
-          <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/premium-photo/assorted-indian-non-vegetarian-food-recipe-served-group-includes-chicken-curry-mutton-masala-anda-egg-curry-butter-chicken-biryani-tandoori-murg-chicken-tikka-naa-roti-ramadan_466689-40865.jpg?w=740" alt="Menu Item">
-          </div>
-          <div class="menu-card-back">
-            <h3 class="menu-item-name">Menu Item Name</h3>
-            <p class="menu-item-price">Price: $10.99</p>
-            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
-        </div>
-      </div>
-      
-    </div>
-
-    
-    <div class="col-sm-4">
-      <div class="menu-card">
-        <div class="menu-card-inner">
-          <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/premium-photo/roasted-chicken-legs-with-south-indian-long-grain-tomato-rice-cooked-with-sauteed-tomatoes-onion-red-chili-powder-cinnamon-turmeric-black-plate-rustic-wooden-table-copy-space_268847-995.jpg?w=740" alt="Menu Item">
-          </div>
-          <div class="menu-card-back">
-            <h3 class="menu-item-name">Menu Item Name</h3>
-            <p class="menu-item-price">Price: $10.99</p>
-            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
-        </div>
-      </div>
-      
-    </div>
-    <div class="col-sm-4">
-      <div class="menu-card">
-        <div class="menu-card-inner">
-          <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/curry-with-chicken-onions-indian-food-asian-cuisine_2829-6270.jpg?w=740&t=st=1686466771~exp=1686467371~hmac=977bc229627b8e54efb0654117e0725a578336a4d0c86794aba6a6ddd1effaa0" alt="Menu Item">
-          </div>
-          <div class="menu-card-back">
-            <h3 class="menu-item-name">Menu Item Name</h3>
-            <p class="menu-item-price">Price: $10.99</p>
-            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>       </div>
         </div>
       </div>
       
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="col-sm-4">
+  <div class="row ">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/top-view-vegetable-soup-with-meat-inside-plate-grey_140725-36040.jpg?w=740&t=st=1686466809~exp=1686467409~hmac=147eb465e55f9a5b36d363d8416618215d1527560e0af175d78d159f8e2f3148" alt="Menu Item">
+            <img  src="https://img.freepik.com/premium-photo/assorted-indian-non-vegetarian-food-recipe-served-group-includes-chicken-curry-mutton-masala-anda-egg-curry-butter-chicken-biryani-tandoori-murg-chicken-tikka-naa-roti-ramadan_466689-40865.jpg?w=740" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">Price: $10.99</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>         </div>
         </div>
       </div>
       
     </div>
 
     
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/high-angle-indian-bowl-with-pita_23-2148734669.jpg?w=740&t=st=1686466823~exp=1686467423~hmac=a3ce59cca9f07309304a41ee27668706d0d36e6e21adec25ccf486688798c8e5" alt="Menu Item">
+            <img  src="https://img.freepik.com/premium-photo/roasted-chicken-legs-with-south-indian-long-grain-tomato-rice-cooked-with-sauteed-tomatoes-onion-red-chili-powder-cinnamon-turmeric-black-plate-rustic-wooden-table-copy-space_268847-995.jpg?w=740" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">Price: $10.99</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>        </div>
         </div>
       </div>
       
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/side-close-up-view-pilaf-appetizing-pilaf-with-rice-meat-dried-fruits_140725-74038.jpg?w=740&t=st=1686466848~exp=1686467448~hmac=4f7c6dcb3c2c893fef3cf2f74c04319c22f9e8c3e8c023bd4b1bb48c59f09255" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/curry-with-chicken-onions-indian-food-asian-cuisine_2829-6270.jpg?w=740&t=st=1686466771~exp=1686467371~hmac=977bc229627b8e54efb0654117e0725a578336a4d0c86794aba6a6ddd1effaa0" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">Price: $10.99</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div> </div>
         </div>
       </div>
       
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="col-sm-4">
+
+
+
+
+
+
+
+
+  <div class="row ">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/italian-spaghetti-with-tomato-sauce-pan_1220-4240.jpg?w=740&t=st=1686466913~exp=1686467513~hmac=70e758ec86b4fca27ef3f47d1c1bd392e0d3a6cad5905872d733392d17d12084" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/top-view-vegetable-soup-with-meat-inside-plate-grey_140725-36040.jpg?w=740&t=st=1686466809~exp=1686467409~hmac=147eb465e55f9a5b36d363d8416618215d1527560e0af175d78d159f8e2f3148" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">Price: $10.99</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>
+          </div>
         </div>
       </div>
       
     </div>
 
     
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/front-close-view-fried-fishes-lemon-slices-brown-plate-spices-tomatoes-oil-bottle-mix-colors-table-with-free-space_179666-18174.jpg?w=740&t=st=1686466930~exp=1686467530~hmac=c18d52a0c0966ecff9aaa541d1d6676972b2440416ebd6296258e11c31532389" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/high-angle-indian-bowl-with-pita_23-2148734669.jpg?w=740&t=st=1686466823~exp=1686467423~hmac=a3ce59cca9f07309304a41ee27668706d0d36e6e21adec25ccf486688798c8e5" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">Price: $10.99</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>
+          </div>
         </div>
       </div>
       
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 mt-2">
       <div class="menu-card">
         <div class="menu-card-inner">
           <div class="menu-card-front">
-            <img class="img-fluid" src="https://img.freepik.com/free-photo/sour-curry-with-snakehead-fish-spicy-garden-hot-pot-thai-food_1150-26404.jpg?w=740&t=st=1686466947~exp=1686467547~hmac=c37490cc801048b01307891e0903192584e72fcbad1efc95ed699673f1387d95" alt="Menu Item">
+            <img  src="https://img.freepik.com/free-photo/side-close-up-view-pilaf-appetizing-pilaf-with-rice-meat-dried-fruits_140725-74038.jpg?w=740&t=st=1686466848~exp=1686467448~hmac=4f7c6dcb3c2c893fef3cf2f74c04319c22f9e8c3e8c023bd4b1bb48c59f09255" alt="Menu Item">
           </div>
           <div class="menu-card-back">
             <h3 class="menu-item-name">Menu Item Name</h3>
             <p class="menu-item-price">Price: $10.99</p>
             <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="wishlist-button">Add to Wishlist</button>
-            <a style="text-decoration: none;" class="ad" href="{% url 'cart' %}">View More</a>            </div>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>     </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-sm-4 mt-2">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img  src="https://img.freepik.com/free-photo/italian-spaghetti-with-tomato-sauce-pan_1220-4240.jpg?w=740&t=st=1686466913~exp=1686467513~hmac=70e758ec86b4fca27ef3f47d1c1bd392e0d3a6cad5905872d733392d17d12084" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>   </div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div class="col-sm-4 mt-2">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img  src="https://img.freepik.com/free-photo/front-close-view-fried-fishes-lemon-slices-brown-plate-spices-tomatoes-oil-bottle-mix-colors-table-with-free-space_179666-18174.jpg?w=740&t=st=1686466930~exp=1686467530~hmac=c18d52a0c0966ecff9aaa541d1d6676972b2440416ebd6296258e11c31532389" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>        </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-4 mt-2">
+      <div class="menu-card">
+        <div class="menu-card-inner">
+          <div class="menu-card-front">
+            <img  src="https://img.freepik.com/free-photo/sour-curry-with-snakehead-fish-spicy-garden-hot-pot-thai-food_1150-26404.jpg?w=740&t=st=1686466947~exp=1686467547~hmac=c37490cc801048b01307891e0903192584e72fcbad1efc95ed699673f1387d95" alt="Menu Item">
+          </div>
+          <div class="menu-card-back">
+            <h3 class="menu-item-name">Menu Item Name</h3>
+            <p class="menu-item-price">Price: $10.99</p>
+            <p class="menu-item-description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="wishlist-wrapper">
+              <a style="text-decoration: none;" class="ad" href="{% url 'cat' %}">View More</a>
+            </div>      </div>
         </div>
       </div>
       
@@ -661,45 +754,53 @@ input, textarea {
 
 
 <section class="container-fluid mb-5 mt-5">
-<div class="row">
-  <h1 class="text-center"><span style="color: #6F4E37;">OUR</span> CHEF</h1>
-</div>
-
-<div class="row">
-  <div class="col-sm-3">
-    <img class="img-fluid rounded-circle"  src="https://img.freepik.com/free-photo/image-cheerful-young-cook-uniform-standing-isolated-grey-wall_171337-5340.jpg?w=740&t=st=1686467574~exp=1686468174~hmac=fea0ecd29d2259a7f5544b6436109e7ebe8e613440c8e91dfb8265d1b42be43b" alt="">
-    <center>
-      <h3>Ashiq</h3>
-      <p><b>Senior Chef</b></p>
-    </center>
+  <div class="row">
+    <h1 class="text-center"><span style="color: #6F4E37;">OUR</span> CHEF</h1>
   </div>
 
-  <div class="col-sm-3">
-    <img  class="img-fluid rounded-circle"  src="https://img.freepik.com/free-photo/happy-male-chef-cook-restaurant-kitchen_496169-81.jpg?w=740&t=st=1686467986~exp=1686468586~hmac=8016cd19fe888a6dc9b19ae6b22c6c059bfdad545651d4ec8abbfce5544f0ff4" alt="">
-    <center>
-      <h3>abi</h3>
-      <p><b>Senior Chef</b></p>
-    </center>
-  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="chef-card">
+        <img class="img-fluid rounded-circle" src="https://img.freepik.com/free-photo/image-cheerful-young-cook-uniform-standing-isolated-grey-wall_171337-5340.jpg?w=740&t=st=1686467574~exp=1686468174~hmac=fea0ecd29d2259a7f5544b6436109e7ebe8e613440c8e91dfb8265d1b42be43b" alt="">
+        <div class="chef-details">
+          <h3>Ashiq</h3>
+          <p><b>Senior Chef</b></p>
+        </div>
+      </div>
+    </div>
 
-  <div class="col-sm-3">
-    <img  class="img-fluid rounded-circle"  src="https://img.freepik.com/premium-photo/happy-male-chef-dressed-uniform-holding-wooden-spoon_156779-545.jpg?w=740" alt="">
-    <center>
-      <h3>jasel</h3>
-      <p><b>Asst Chef</b></p>
-    </center>
-  </div>
+    <div class="col-sm-3">
+      <div class="chef-card">
+        <img class="img-fluid rounded-circle" src="https://img.freepik.com/free-photo/happy-male-chef-cook-restaurant-kitchen_496169-81.jpg?w=740&t=st=1686467986~exp=1686468586~hmac=8016cd19fe888a6dc9b19ae6b22c6c059bfdad545651d4ec8abbfce5544f0ff4" alt="">
+        <div class="chef-details">
+          <h3>Abi</h3>
+          <p><b>Senior Chef</b></p>
+        </div>
+      </div>
+    </div>
 
-  <div class="col-sm-3">
-    <img  class="img-fluid rounded-circle"  src="https://img.freepik.com/premium-photo/cropped-shot-young-male-chef-preparing-meal-professional-kitchen_579247-36.jpg?w=740" alt="">
-    <center>
-      <h3>milu</h3>
-      <p><b>Junior Chef</b></p>
-    </center>
-  </div>
-</div>
+    <div class="col-sm-3">
+      <div class="chef-card">
+        <img class="img-fluid rounded-circle" src="https://img.freepik.com/premium-photo/happy-male-chef-dressed-uniform-holding-wooden-spoon_156779-545.jpg?w=740" alt="">
+        <div class="chef-details">
+          <h3>Jasel</h3>
+          <p><b>Asst Chef</b></p>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-sm-3">
+      <div class="chef-card">
+        <img class="img-fluid rounded-circle" src="https://img.freepik.com/premium-photo/cropped-shot-young-male-chef-preparing-meal-professional-kitchen_579247-36.jpg?w=740" alt="">
+        <div class="chef-details">
+          <h3>Milu</h3>
+          <p><b>Junior Chef</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
 
 
 <section class="container-fluid mb-5 mt-5 ">
@@ -873,41 +974,73 @@ input, textarea {
   <div class="row">
     <h1 class="text-center"><span style="color: #6F4E37;"> GALLERY</span> </h1>
   </div>
-  <div class="gallery">
+
+<div class="gallery">
     <div class="gallery-item">
       <img src="https://img.freepik.com/free-photo/delicious-fried-chicken-plate_144627-27383.jpg?w=740&t=st=1686554035~exp=1686554635~hmac=752001b26010885c9efd65b4cf5ca6836b6ddbad4280d786122cb6a9230a23a3" alt="Image 1">
+      <div class="item-name">ChiCken</div>
     </div>
-    <div class="gallery-item">
+     <div class="gallery-item">
       <img src="https://img.freepik.com/premium-photo/traditional-spanish-seafood-paella-fry-pan-white-background_222237-372.jpg?w=740" alt="Image 2">
+        <div class="item-name">VEG-BIRIYANI</div>
     </div>
+    <!-- Add similar markup for other gallery items -->
     <div class="gallery-item">
       <img src="https://img.freepik.com/premium-photo/indian-vegetable-pulav-biryani-made-using-basmati-rice-served-terracotta-bowl-selective-focus_466689-55615.jpg?w=740" alt="Image 2">
+           <div class="item-name">FRIED-RICE</div>
+
     </div>
     <div class="gallery-item">
       <img src="https://img.freepik.com/free-photo/side-view-pilaf-with-stewed-beef-meat-plate_141793-5057.jpg?w=740&t=st=1686554084~exp=1686554684~hmac=d8bc77f6406d2551a9ded2a6c3ec6c4bde7d3eda6e3859c479de93d79a79265a" alt="Image 2">
+            <div class="item-name">BIRIYANI</div>
+
     </div>
     <div class="gallery-item">
       <img src="https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=740&t=st=1686554100~exp=1686554700~hmac=135cd706c176dec75873e6314f1d286732019a63eb84e661b0edb83874382444" alt="Image 2">
+            <div class="item-name">CHICKEN NOODLES</div>
+
     </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/stir-fry-chicken-sweet-peppers-green-beans_2829-20110.jpg?w=740&t=st=1686554248~exp=1686554848~hmac=8a375557d933806eabf932a7f5b8561fd525ee29540e870c3f0fec11698f8721" alt="Image 1">
+            <div class="item-name">PASTHA</div>
+
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/premium-photo/indian-hindu-veg-thali-also-known-as-food-platter-is-complete-lunch-dinner-meal-closeup-selective-focus_466689-9082.jpg?w=740" alt="Image 2">
+            <div class="item-name">FISH-MEALS</div>
+
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/premium-photo/chicken-mandi-biryani-with-raita-as-side-dish-arranged-earthenware_527904-518.jpg?w=740" alt="Image 2">
+            <div class="item-name">KUZHI-MANDI</div>
+
+    </div>
+ 
+ 
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/premium-photo/chicken-dhum-biriyani-using-jeera-rice-spices-arranged-earthen-ware_527904-513.jpg?w=740" alt="Image 2">
+            <div class="item-name">CHICKEN-BIRIYANI</div>
+
+    </div>
+    <div class="gallery-item">
+      <img src="https://img.freepik.com/free-photo/fried-vegetables-with-sauce-pan_1220-5255.jpg?w=740&t=st=1686554305~exp=1686554905~hmac=d35d91d6d9f1d3cc4202295aa5acacf49bac45a97fc18b843a1ef523f81b890e" alt="Image 2">
+    
+      <div class="item-name">VEG-SALAD</div>
+    </div>
+  </div>
+
+    
+   
+    
+   
+   
     
 
     <!-- Add more gallery items as needed -->
 
-    <div class="gallery-item">
-      <img src="https://img.freepik.com/free-photo/stir-fry-chicken-sweet-peppers-green-beans_2829-20110.jpg?w=740&t=st=1686554248~exp=1686554848~hmac=8a375557d933806eabf932a7f5b8561fd525ee29540e870c3f0fec11698f8721" alt="Image 1">
-    </div>
-    <div class="gallery-item">
-      <img src="https://img.freepik.com/premium-photo/indian-hindu-veg-thali-also-known-as-food-platter-is-complete-lunch-dinner-meal-closeup-selective-focus_466689-9082.jpg?w=740" alt="Image 2">
-    </div>
-    <div class="gallery-item">
-      <img src="https://img.freepik.com/free-photo/whole-chicken-grill-served-with-rice-garnish-white-plate_114579-873.jpg?w=740&t=st=1686554274~exp=1686554874~hmac=83e681d7b7e12254ac98134b616adaa8b197d0bb7e9998cc611ecb71f8ff1ae4" alt="Image 2">
-    </div>
-    <div class="gallery-item">
-      <img src="https://img.freepik.com/premium-photo/chicken-dhum-biriyani-using-jeera-rice-spices-arranged-earthen-ware_527904-513.jpg?w=740" alt="Image 2">
-    </div>
-    <div class="gallery-item">
-      <img src="https://img.freepik.com/free-photo/fried-vegetables-with-sauce-pan_1220-5255.jpg?w=740&t=st=1686554305~exp=1686554905~hmac=d35d91d6d9f1d3cc4202295aa5acacf49bac45a97fc18b843a1ef523f81b890e" alt="Image 2">
-    </div>
+    
+
+   
   </div>
   
 
@@ -916,7 +1049,7 @@ input, textarea {
 <section class="container-fluid mt-5 mb-5">
   <div class="feedback-form">
     <h2>Tell us <span style="color: #5c351a;">something</span> </h2>
-    <form action="{% url 'lg' %}">
+    <form action="">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>

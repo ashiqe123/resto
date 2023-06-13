@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load static %}
 {% block content %}
 <style>
@@ -156,9 +156,9 @@ th {
 
   
 </style>
-<section class="container-fluid">
+<section class="container">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="container">
               <h1 style="visibility: hidden;">Your Cart</h1>
               <h2 class="mt-5">Your Cart</h2>
@@ -193,34 +193,158 @@ th {
                 </tbody>
               </table>
               <div class="total">Total: <span id="totalAmount">$96</span></div>
+            
             </div>
+
+            <div class="container ">
+                <h3 class="">Delivery address:</h3>
+                <div  class="form-group justify-content-center"  >
+                    <input class="form-control" type="text" placeholder="Delivery Address">
+                    <input class="form-control"  type="text" placeholder="City">
+                    <input class="form-control"  type="text" placeholder="Postal Code">
+                </div>
+               </div>
           </div>
           
-    <div class="col-sm-6  " style="margin-top: 7rem;">
-       <div class="container">
-        <h3>Delivery address:</h3>
-        <div  class="form-group justify-content-center"  >
-            <input class="form-control" type="text" placeholder="Delivery Address">
-            <input class="form-control"  type="text" placeholder="City">
-            <input class="form-control"  type="text" placeholder="Postal Code">
-        </div>
-       </div>
-        </div>
+ 
     </div>
-  <center>
-    <a href="{% url 'lg' %}" class="checkout-btn" id="checkout-btn">Proceed to Checkout</a>
+<center>
+    <a href="#" class="checkout-btn text-center" id="checkout-btn">Proceed to Checkout</a>
 
-  </center>
+</center>
 </section>
   <!-- ...your existing HTML code... -->
- 
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h5>Select Payment Option</h5>
+      <ul class="payment-options">
+        <li data-option="upi">UPI</li>
+        <li data-option="card">Card Payment</li>
+        <li data-option="cod">Cash on Delivery</li>
+      </ul>
+      <div class="payment-fields">
+        <div id="upi-fields" class="payment-field">
+          <input class="form-control" type="text" placeholder="UPI ID">
+        </div>
+        <div id="card-fields" class="payment-field form-group">
+          <input type="text" class="form-control" placeholder="Card Number">
+          <input type="text" class="form-control" placeholder="Expiry Date">
+          <input type="text" class="form-control" placeholder="CVV">
+        </div>
+
+        <div id="cod-fields" class="payment-field">
+           
+          </div>
+      </div>
+      <button style="background-color: saddlebrown;color: #fff; border-radius: .3rem; width: 30%;" class="pay-now-btn">Pay Now</button>
+
+    </div>
+  </div>
+  
   <!-- ...your existing HTML code... -->
- 
+  <div class="moda">
+    <div class="moda-content"></div>
+  </div>
+  
 
 <script>
 
+var payNowBtn = document.querySelector(".pay-now-btn");
+var moda = document.querySelector(".moda");
+var modaContent = document.querySelector(".moda-content");
 
+payNowBtn.addEventListener("click", function() {
+  moda.style.display = "block";
+});
 
+modaContent.innerHTML = "Order placed successfully";
+var okButton = document.createElement("button");
+okButton.innerHTML = "OK";
+okButton.classList.add("moda-btn");
+modaContent.appendChild(okButton);
+
+okButton.addEventListener("click", function() {
+  moda.style.display = "none";
+  window.location.href = "{% url 'home' %}";
+});
+
+// Event listener for "Pay Now" button click
+
+    
+// Get the modal element
+const modal = document.getElementById('myModal');
+
+// Get the checkout button element
+const checkoutBtn = document.getElementById('checkout-btn');
+
+// Get the close button element
+const closeBtn = document.getElementsByClassName('close')[0];
+
+// Get the payment options
+const paymentOptions = document.querySelectorAll('.payment-options li');
+
+// Get the payment fields
+const paymentFields = document.querySelectorAll('.payment-field');
+
+// Add click event listener to the checkout button
+checkoutBtn.addEventListener('click', openModal);
+
+// Add click event listener to the close button
+closeBtn.addEventListener('click', closeModal);
+
+// Add click event listener to each payment option
+paymentOptions.forEach((option) => {
+  option.addEventListener('click', handlePaymentOption);
+});
+
+// Function to open the modal
+function openModal() {
+  modal.style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+// Function to handle the selection of a payment option
+function handlePaymentOption(event) {
+  const selectedOption = event.target.dataset.option;
+
+  // Hide all payment fields
+  paymentFields.forEach((field) => {
+    field.style.display = 'none';
+  });
+
+  // Show the selected payment field
+  const selectedField = document.getElementById(`${selectedOption}-fields`);
+  if (selectedField) {
+    selectedField.style.display = 'block';
+  }
+
+  // Perform actions based on the selected payment option
+  switch (selectedOption) {
+    case 'upi':
+      // Handle UPI payment option
+      break;
+    case 'card':
+      // Handle card payment option
+      break;
+    case 'cod':
+      // Handle cash on delivery option
+      break;
+    default:
+      // Default action
+  }
+}
+
+// Close the modal when the user clicks outside of it
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
 
 
 

@@ -19,3 +19,17 @@ def lg(request):
 
 def home(request):
     return render(request,'home.html')
+
+    
+def wl(request):
+    return render(request,'wl.html')
+
+def wl2(request):
+    return render(request,'wl2.html')
+
+def catlog(request):
+    return render(request, 'catlog.html')
+
+
+def logcart(request):
+    return render(request, 'logcart.html')

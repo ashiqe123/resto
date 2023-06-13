@@ -551,15 +551,12 @@ text-align: center;
         display: none;
     }
 }
-
-
-
     </style>
 </head>
-<body>
+<body  >
     <section class="container-fluid">
         <nav class="navbar ">
-            <div class="navbar-container container">
+            <div class="navbar-container container ">
                 <input type="checkbox" name="" id="">
                 <div class="hamburger-lines">
                     <span class="line line1"></span>
@@ -571,6 +568,7 @@ text-align: center;
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'cat' %}">Category</a></li>
                     
+                    <li><a href="{% url 'cart' %}">Cart</a></li>
                     <li><a href="lg">Login</a></li>
                 </ul>
                 <h1 class="logo">RestoCafe</h1>
@@ -602,8 +600,8 @@ text-align: center;
             
 
                 <div class="inline-form" style="display: flex; justify-content: center; gap: 10px;">
-                    <button style="width: 50%; height: 30%;"><a style="color: #000;" href="{% url 'lg' %}"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></a></button>
-                    <button style="width: 50%; height: 30%;"><a style="color: #f00000;" href="{% url 'wl' %}"><i style="font-size: 2rem;" class="fas fa-heart"></i></a></button>
+                    <button style="width: 50%; height: 30%;"><a style="color: #000;" href="{% url 'logcart' %}"><i style="font-size: 2rem;" class="fas fa-shopping-cart"></i></a></button>
+                    <button style="width: 50%; height: 30%;"><a style="color: #f00000;" href="{% url 'wl2' %}"><i style="font-size: 2rem;" class="fas fa-heart"></i></a></button>
                 </div>
                 
                 
